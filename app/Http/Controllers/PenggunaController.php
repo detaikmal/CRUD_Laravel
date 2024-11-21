@@ -20,7 +20,7 @@ class PenggunaController extends Controller
         return view('pengguna.create');
     }
 
-    public function store(Request $request): RedirectResponse {
+    public function storeCreate(Request $request): RedirectResponse {
         $request->validate([
             'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
             'nama'  => 'required',
@@ -100,9 +100,7 @@ class PenggunaController extends Controller
 
     public function destroy($id): RedirectResponse {
         $pengguna = Pengguna::findOrFail($id);
-
         Storage::delete('public/penggunas/' . $pengguna->image);
-
         $pengguna->delete();
 
         return redirect()->route('pengguna.index')->with(['success' => 'Data Pengguna Berhasil Dihapus!']);
