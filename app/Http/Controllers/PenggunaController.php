@@ -27,6 +27,19 @@ class PenggunaController extends Controller
             'email' => 'required|email|unique:penggunas,email',
             'no_hp' => 'required|numeric',
             'umur'  => 'required|numeric',
+        ], [
+            'image.required' => 'Foto profil harus diisi !!',
+            'image.max' => 'Foto Maksimal 2MB',
+            'image.mimes' => 'Foto harus dalam format JPEG, JPG atau PNG',
+            'nama.required' => 'Nama harus diisi !!',
+            'nama.max' => 'Nama terlalu panjang !!',
+            'email.required' => 'Email harus diisi !!',
+            'email.email' => 'Format email tidak valid !!',
+            'no_hp.required' => 'Nomor telepon harus diisi !!',
+            'no_hp.numeric' => 'Nomor telepon harus berupa angka !!',
+            'umur.required' => 'Umur harus diisi !!',
+            'umur.numeric' => 'Umur harus berupa angka !!',
+            'jenis_kelamin.required' => 'Pilih jenis kelamin !!'
         ]);
 
         $image = $request->file('image');
@@ -58,13 +71,27 @@ class PenggunaController extends Controller
 
     public function update(Request $request, $id): RedirectResponse {
         $request->validate([
-            'image'           => 'image|mimes:jpeg,jpg,png|max:2048',
-            'nama'            => 'required',
-            'email'           => 'required|email',
-            'no_hp'           => 'required|numeric',
-            'umur'            => 'required|numeric',
-            'jenis_kelamin'   => 'required',
+            'image' => 'image|mimes:jpeg,jpg,png|max:2048',
+            'nama' => 'required|max:255',
+            'email' => 'required|email',
+            'no_hp' => 'required|numeric',
+            'umur' => 'required|numeric',
+            'jenis_kelamin' => 'required',
+        ], [
+            'image.required' => 'Foto profil harus diisi !!',
+            'image.max' => 'Foto Maksimal 2MB',
+            'image.mimes' => 'Foto harus dalam format JPEG, JPG atau PNG',
+            'nama.required' => 'Nama harus diisi !!',
+            'nama.max' => 'Nama terlalu panjang !!',
+            'email.required' => 'Email harus diisi !!',
+            'email.email' => 'Format email tidak valid !!',
+            'no_hp.required' => 'Nomor telepon harus diisi !!',
+            'no_hp.numeric' => 'Nomor telepon harus berupa angka !!',
+            'umur.required' => 'Umur harus diisi !!',
+            'umur.numeric' => 'Umur harus berupa angka !!',
+            'jenis_kelamin.required' => 'Pilih jenis kelamin !!'
         ]);
+        
 
         $pengguna = Pengguna::findOrFail($id);
 
